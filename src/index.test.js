@@ -28,4 +28,28 @@ describe('tests from README.md', () => {
     expect(createAction('increment')(1)).to.be.eql({type: 'increment', payload: 1});
     expect(createAction('increment').toString()).to.be.eq('increment');
   });
+
+  it('typed examples', () => {
+    expect(typed()('increment')()).to.be.eql({ type: 'increment' });
+  });
+
+  it('fsa examples', () => {
+    let actionCreator = fsa()();
+    expect(actionCreator(1)).to.be.eql({payload: 1});
+
+    actionCreator = fsa()(null, (todos, status) => ({todos, status}));
+    expect(actionCreator(['todo'], true)).to.be.eql({
+      payload: {
+        todos: ['todo'],
+        status: true,
+      },
+    });
+
+    actionCreator = fsa()(null, (todos, status) => todos, (todos, status) => ({status}));
+    expect(actionCreator(['todo'], true)).to.be.eql({
+      payload: ['todo'],
+      meta: {status: true},
+    });
+
+  });
 });
