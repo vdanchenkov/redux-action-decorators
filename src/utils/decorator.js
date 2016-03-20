@@ -1,7 +1,8 @@
-import emptyActionFactory from 'utils/emptyActionFactory';
-import inherit from './inherit';
+const emptyActionFactory = () => () => ({});
 
-export default (actionCreatorBuilder) => (factory = emptyActionFactory) => (...args) => {
-  const deeperActionCreator = factory(...args);
-  return inherit(deeperActionCreator, actionCreatorBuilder(deeperActionCreator, ...args));
-}
+export default (factory) => (wrappedfactory = emptyActionFactory) => (...args) => {
+  const wrappedActionCreator = wrappedfactory(...args);
+  const actionCreator = factory(wrappedActionCreator, ...args);
+  Object.setPrototypeOf(actionCreator, wrappedActionCreator);
+  return actionCreator;
+};
