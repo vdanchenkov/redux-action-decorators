@@ -3,11 +3,11 @@ import decorator from 'utils/decorator';
 
 const identity = (object) => object;
 
-export const factory = (getAction, type, payloadCreator, metaCreator) => {
+export const factory = (type, payloadCreator, metaCreator) => {
   const payloadBuilder = payloadCreatorFactory(payloadCreator || identity);
   const metaBuilder = metaCreator ? payloadCreatorFactory(metaCreator) : undefined;
   return (...args) => {
-    const action = { ...getAction(...args)};
+    const action = {};
     action.payload = payloadBuilder(...args);
     if (metaBuilder) {
       action.meta = metaBuilder(...args);

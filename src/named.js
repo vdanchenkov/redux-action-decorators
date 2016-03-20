@@ -1,7 +1,7 @@
 import decorator from 'utils/decorator';
 
-export const factory = (getAction, type) => {
-  const namedActionCreator = (...args) => getAction(...args);
+export const factory = (type) => {
+  const namedActionCreator = () => ({});
   namedActionCreator.toString = () => type;
   return namedActionCreator;
 };

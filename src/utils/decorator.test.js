@@ -17,16 +17,13 @@ export default (decorator, args) => {
   });
 
   it('prototypicaly inherits it\'s action creator from wrapped factory\'s action creator', () => {
-    let ac;
     const factory = () => {
       const creator = () => ({ testField: true });
-      ac = creator;
       creator.func = () => 'result';
       return creator;
     };
     const newFactory = decorator(factory);
     const actionCreator = newFactory();
     expect(actionCreator.func()).to.be.eq('result');
-    expect(Object.getPrototypeOf(actionCreator)).to.be.eq(ac);
   });
 }
