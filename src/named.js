@@ -1,9 +1,9 @@
-import emptyActionFactory from 'utils/emptyActionFactory';
-import inherit from 'utils/inherit';
+import decorator from 'utils/decorator';
 
-export default (factory = emptyActionFactory) => (type, ...rest) => {
-  const actionCreator = factory(type, ...rest);
-  const namedActionCreator = (...actionArgs) => actionCreator(...actionArgs);
+export const factory = (getAction, type) => {
+  const namedActionCreator = (...args) => getAction(...args);
   namedActionCreator.toString = () => type;
-  return inherit(actionCreator, namedActionCreator);
-}
+  return namedActionCreator;
+};
+
+export default decorator(factory);

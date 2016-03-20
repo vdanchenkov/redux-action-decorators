@@ -1,3 +1,6 @@
+# Warning
+This project is under heavy development. I plan to ship something stable by the end of the March.
+
 # Terminology
 
 - Action - object containing the information to be send to the store. `dispatch(action)`

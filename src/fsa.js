@@ -1,20 +1,19 @@
-import emptyActionFactory from 'utils/emptyActionFactory';
 import payloadCreatorFactory from 'utils/payloadCreatorFactory';
-import inherit from 'utils/inherit';
+import decorator from 'utils/decorator';
 
 const identity = (object) => object;
 
-export default (factory = emptyActionFactory) => (...args) => {
-  const [type, payloadCreator, metaCreator] = args;
+export const factory = (getAction, type, payloadCreator, metaCreator) => {
   const payloadBuilder = payloadCreatorFactory(payloadCreator || identity);
   const metaBuilder = metaCreator ? payloadCreatorFactory(metaCreator) : undefined;
-  const actionCreator = factory(...args);
-  return inherit(actionCreator, (...actionArgs) => {
-    const action = actionCreator();
-    action.payload = payloadBuilder(...actionArgs);
+  return (...args) => {
+    const action = { ...getAction(...args)};
+    action.payload = payloadBuilder(...args);
     if (metaBuilder) {
-      action.meta = metaBuilder(...actionArgs);
+      action.meta = metaBuilder(...args);
     }
     return action;
-  });
-}
+  }
+};
+
+export default decorator(factory);
