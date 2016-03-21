@@ -57,7 +57,6 @@ describe('tests from README.md', () => {
     const increment = createAction('increment');
 
     const handleActions = require('redux-actions').handleActions;
-    //import { handleActions } from 'redux-actions';
 
     const reducer = handleActions({
       [increment]: (state) => state + 1,
