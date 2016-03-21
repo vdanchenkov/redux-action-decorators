@@ -1,11 +1,15 @@
 {
   "name": "redux-action-decorators",
   "version": "0.1.0",
-  "description": "Decorators to build action creator factories",
+  "description": "Decorators for redux action creator factories",
   "main": "lib/index.js",
   "files": [
     "lib",
     "src"
+  ],
+  "keywords": [
+    "redux",
+    "actions"
   ],
   "scripts": {
     "clean": "rimraf lib",
