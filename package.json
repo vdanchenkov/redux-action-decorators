@@ -1,7 +1,7 @@
 {
-  "name": "redux-action-creators",
-  "version": "0.0.1",
-  "description": "Helpers for Redux action creators",
+  "name": "redux-action-decorators",
+  "version": "0.0.2",
+  "description": "Decorators to build action creator factories",
   "main": "lib/index.js",
   "files": [
     "lib",
