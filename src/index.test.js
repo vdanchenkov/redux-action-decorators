@@ -50,6 +50,19 @@ describe('tests from README.md', () => {
       payload: ['todo'],
       meta: {status: true},
     });
-
   });
+
+  it('named examples', () => {
+    let createAction = named(typed());
+    const increment = createAction('increment');
+
+    const handleActions = require('redux-actions').handleActions;
+    //import { handleActions } from 'redux-actions';
+
+    const reducer = handleActions({
+      [increment]: (state) => state + 1,
+    });
+
+    expect(reducer(1, increment())).to.be.eq(2)
+  })
 });

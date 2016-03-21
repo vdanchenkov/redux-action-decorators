@@ -66,3 +66,18 @@ Adds payload and meta to action. Second argument of action creator will be used 
       payload: ['todo'],
       meta: { status: true },
     });
+    
+### named
+Add `toString()` method to the action creator returning first argument. It enables usage of action creator itself insted of action name constant.
+ 
+    import { handleActions } from 'redux-actions';
+    import { named, typed } from 'redux-action-decorators';
+    
+    let createAction = named(typed());
+    const increment = createAction('increment');
+
+    const reducer = handleActions({
+      [increment]: (state) => state + 1,
+    });
+
+    expect(reducer(1, increment())).to.be.eq(2)
