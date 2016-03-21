@@ -1,6 +1,6 @@
 {
   "name": "redux-action-decorators",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Decorators to build action creator factories",
   "main": "lib/index.js",
   "files": [
