@@ -1,5 +1,5 @@
-import payloadCreatorFactory from 'utils/payloadCreatorFactory';
-import decorator from 'utils/decorator';
+import payloadCreatorFactory from './utils/payloadCreatorFactory';
+import decorator from './utils/decorator';
 
 const identity = (object) => object;
 

@@ -1,4 +1,4 @@
-import decorator from 'utils/decorator';
+import decorator from './utils/decorator';
 
 export const factory = (type) => {
   const namedActionCreator = () => ({});

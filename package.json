@@ -1,6 +1,6 @@
 {
   "name": "redux-action-decorators",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Decorators for redux action creator factories",
   "main": "lib/index.js",
   "files": [
@@ -14,9 +14,9 @@
   "scripts": {
     "clean": "rimraf lib",
     "build": "babel src --out-dir lib",
-    "coverage": "NODE_PATH='./src' babel-node $(npm bin)/isparta cover --include \"**/!(*test).js\" node_modules/mocha/bin/_mocha -- --recursive src",
+    "coverage": "babel-node $(npm bin)/isparta cover --include \"**/!(*test).js\" node_modules/mocha/bin/_mocha -- --recursive src",
     "prepublish": "npm run clean && npm run build",
-    "test": "NODE_PATH='./src' mocha --recursive src -w --compilers js:babel-register"
+    "test": "mocha --recursive src -w --compilers js:babel-register"
   },
   "repository": {
     "type": "git",

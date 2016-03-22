@@ -1,6 +1,6 @@
-import fsa from 'fsa';
+import fsa from './fsa';
 import { expect } from 'chai';
-import decoratorTest from 'utils/decorator.test';
+import decoratorTest from './utils/decorator.test';
 
 describe('FSA action creator factory', () => {
   decoratorTest(fsa, ['SOME_ACTION_TYPE']);

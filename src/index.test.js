@@ -1,6 +1,6 @@
-import fsa from 'fsa';
-import typed from 'typed';
-import named from 'named';
+import fsa from './fsa';
+import typed from './typed';
+import named from './named';
 import { expect } from 'chai';
 import { createAction as reduxActionsFactory } from 'redux-actions';
 

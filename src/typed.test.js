@@ -1,6 +1,6 @@
-import typed from 'typed';
+import typed from './typed';
 import { expect } from 'chai';
-import decoratorTest from 'utils/decorator.test';
+import decoratorTest from './utils/decorator.test';
 
 describe('Typed action creator factory', () => {
   decoratorTest(typed, ['SOME_ACTION_TYPE']);
