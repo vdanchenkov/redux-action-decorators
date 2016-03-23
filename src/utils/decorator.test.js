@@ -1,29 +1,36 @@
 import { expect } from 'chai';
+import decorator from './decorator';
 
-export default (decorator, args) => {
-  it('calls action creator of wrapped factory and uses it to build action', () => {
-    const factory = () => () => ({ testField: true });
-    expect(decorator(factory)(...args)()).to.include({ testField: true})
+describe('decorator() creates decorators that', () => {
+  const a = () => {
+    const ac = (x) => ({a: x});
+    ac.y = 'y';
+    return ac;
+  };
+
+  const b = () => {
+    const ac = (x) => ({b: x});
+    ac.z = 'z';
+    return ac;
+  };
+
+  const decoratorA = decorator(a);
+
+  it('if invoked with no arguments returns associated factory', () => {
+    expect(decoratorA()).to.be.eq(a);
   });
 
-  it('can be called without arguments', () => {
-    expect(decorator()(...args)()).to.be.a('object');
-  });
+  describe('if invoked with another factory returns merged factory that', () => {
+    const mergedFactory = decoratorA(b);
 
-  // TODO
-  it('should not modify original factory', () => {
-    let factory = Object.freeze(() => () => ({}));
-    decorator(factory)(...args)();
-  });
+    it('merges actions', () => {
+      expect(mergedFactory()('test')).to.be.eql({a: 'test', b: 'test'})
+    })
 
-  it('prototypicaly inherits it\'s action creator from wrapped factory\'s action creator', () => {
-    const factory = () => {
-      const creator = () => ({ testField: true });
-      creator.func = () => 'result';
-      return creator;
-    };
-    const newFactory = decorator(factory);
-    const actionCreator = newFactory();
-    expect(actionCreator.func()).to.be.eq('result');
+
+    it('returns action creator prototypically inherited from both action creators', () => {
+      expect(mergedFactory().y).to.be.eq('y');
+      expect(mergedFactory().z).to.be.eq('z');
+    })
   });
-}
+});

@@ -1,7 +1,8 @@
-import named from './named';
+import { default as decorator, factory } from './named';
 import { expect } from 'chai';
-import decoratorTest from './utils/decorator.test';
 
 describe('Named action creator factory', () => {
-  decoratorTest(named, ['SOME_ACTION_TYPE']);
+  it('creates action creator that have toString method returning first argument of the action creator', () => {
+    expect(factory('test').toString()).to.be.eq('test');
+  });
 });

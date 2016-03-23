@@ -1,11 +1,7 @@
-import fsa from './fsa';
+import { default as decorator, factory } from './fsa';
 import { expect } from 'chai';
-import decoratorTest from './utils/decorator.test';
 
 describe('FSA action creator factory', () => {
-  decoratorTest(fsa, ['SOME_ACTION_TYPE']);
-  const factory = fsa();
-
   describe('creates action creator that', () => {
     it('puts identity of second argument to payload by default', () => {
       const action = factory('ACTION')('test');
