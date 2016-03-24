@@ -1,6 +1,7 @@
+# Deprecated
+Looks like I overengineered it.
+
 # Redux Action Decorators
-## Work in Progress
-This project is under heavy development. I plan to ship something stable by the end of the March.
 
 ## Terminology
 
